@@ -1,13 +1,24 @@
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Sistema {
 
     public static void llenarManifiesto(Contenedor[] m) {
-        m[0] = new Contenedor("Contenedor 1", 240, 1);
-        m[1] = new Contenedor("Contenedor 2", 120, 2);
-        m[2] = new Contenedor("Contenedor 3", 340, 1);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el número de contenedores: ");
+        int n = sc.nextInt();
+        for (int i = 0; i < n && i < m.length; i++) {
+            System.out.print("ID del contenedor " + (i + 1) + ": ");
+            String id = sc.next();
+            System.out.print("Peso: ");
+            double peso = sc.nextDouble();
+            System.out.print("Prioridad: ");
+            int prioridad = sc.nextInt();
+            m[i] = new Contenedor(id, peso, prioridad);
+        }
+        sc.close();
     }
 
     public static double pesoTotal(Contenedor[] m) {
@@ -56,7 +67,7 @@ public class Sistema {
 
         Contenedor[] manifiesto = new Contenedor[10];
         Contenedor[][] patio = new Contenedor[5][5];
-        Queue<Contenedor> inspeccion = new LinkedList<>();
+        Queue<Contenedor> inspeccion = new ArrayDeque<>();
         Stack<Contenedor> buque = new Stack<>();
 
         // 1. Llenar datos
